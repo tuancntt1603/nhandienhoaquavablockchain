@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký - Nhận dạng trái cây</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <div class="left-panel">
+            <div class="content">
+                <h1>Trái Cây<span class="dot">.</span></h1>
+                <p>Hệ thống nhận dạng trái cây thông minh với độ chính xác cao</p>
+                <div class="social-login">
+                    <p>Kết nối với</p>
+                    <div class="social-buttons">
+                        <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn twitter"><i class="fab fa-twitter"></i> Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-info">
+                <span lang="vi" class="fruit-title">NHẬN DẠNG TRÁI CÂY</span>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="login-form">
+                <h2>Đăng ký tài khoản</h2>
+                <p class="account-prompt">Đã có tài khoản? <a href="{{ url_for('login') }}">Đăng nhập</a> ngay</p>
+                
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
+                <form action="{{ url_for('register') }}" method="post">
+                    <div class="form-group">
+                        <input type="text" id="fullname" name="fullname" placeholder="Họ và tên" required>
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="username" name="username" placeholder="Tên đăng nhập" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Xác nhận mật khẩu" required>
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">Tôi đồng ý với các điều khoản</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="login-btn">
+                        <span>Tạo tài khoản</span>
+                        <i class="fas fa-user-plus"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

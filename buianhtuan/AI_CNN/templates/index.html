@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>FruitAI • Nhận Diện Trái Cây Thông Minh</title>
+    <link
+      rel="icon"
+      href="https://cdn3.iconfinder.com/data/icons/food-pyramid-nutrition/512/fruits-512.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <!-- Chart.js and Ethers.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <!-- Font đã được thay đổi sang Arial trong CSS -->
+    <link rel="stylesheet" href="/static/styles.css" />
+    <meta name="description" content="Ứng dụng nhận dạng trái cây sử dụng trí tuệ nhân tạo và học sâu" />
+  </head>
+  <body>
+    <header class="user-header">
+      <div class="container">
+        <div class="user-info d-flex justify-content-between align-items-center">
+          <div class="web3-status">
+            <button id="connectWallet" class="btn btn-outline-warning btn-sm" onclick="connectWallet()">
+              <i class="fas fa-wallet"></i> Kết nối MetaMask
+            </button>
+            <span id="walletAddress" class="text-white small ml-2" style="display: none;"></span>
+          </div>
+          <div class="user-actions">
+            <span>Xin chào, <strong>{{ session['fullname'] }}</strong></span>
+            <a href="{{ url_for('logout') }}" class="logout-btn ml-3">
+              <i class="fas fa-sign-out-alt"></i> Đăng xuất
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero-section fade-in">
+        <h1 class="title">FruitAI<span class="dot">.</span></h1>
+        <p class="lead">Hệ thống nhận diện trái cây thông minh với trí tuệ nhân tạo</p>
+      </section>
+
+      <div class="text-center">
+        <!-- Tab navigation -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="upload-tab" data-toggle="tab" href="#upload" role="tab">
+            <i class="fas fa-upload"></i> Tải lên hình ảnh
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="camera-tab" data-toggle="tab" href="#camera" role="tab">
+            <i class="fas fa-camera"></i> Sử dụng camera
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="history-tab" data-toggle="tab" href="#history" role="tab" onclick="loadHistory()">
+            <i class="fas fa-history"></i> Lịch sử
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab" onclick="loadDashboard()">
+            <i class="fas fa-chart-pie"></i> Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="blockchain-tab" data-toggle="tab" href="#blockchain" role="tab" onclick="loadBlockchain()">
+            <i class="fas fa-link"></i> Truy xuất Blockchain
+          </a>
+        </li>
+      </ul>
+
+      <!-- Tab content -->
+      <div class="tab-content" id="myTabContent">
+        <!-- Tab tải lên hình ảnh -->
+        <div class="tab-pane fade show active" id="upload" role="tabpanel">
+          <div class="card mt-4 fade-in">
+            <div class="card-body text-center">
+              <label for="fileInput" class="custom-file-container w-100" style="cursor: pointer;">
+                <div class="py-4">
+                  <i class="fas fa-cloud-upload-alt fa-4x mb-3 text-primary floating"></i>
+                  <h4 class="text-white">Nhấp để chọn hoặc kéo thả ảnh vào đây</h4>
+                  <p class="text-muted small">Hỗ trợ định dạng: JPG, PNG, GIF (Max 10MB)</p>
+                </div>
+                <input type="file" id="fileInput" class="form-control-file" accept="image/*" />
+              </label>
+              
+              <div class="button-group mt-4">
+                <button class="btn btn-primary" onclick="uploadImage()">
+                  <i class="fas fa-magic"></i> Phân tích ngay
+                </button>
+                <button class="btn btn-secondary ml-2" onclick="clearImage()">
+                  <i class="fas fa-undo"></i> Làm mới
+                </button>
+              </div>
+
+              <div id="loadingIndicator" class="text-center mt-4" style="display: none;">
+                <div class="loading"><div></div><div></div><div></div><div></div></div>
+                <p class="text-primary font-weight-bold">Đang phân tích trí tuệ nhân tạo...</p>
+              </div>
+
+              <div id="result" class="mt-4"></div>
+              <div id="nutritionResult" class="mt-4"></div>
+              <div id="imageResult" class="mt-4"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="camera" role="tabpanel">
+          <div class="card mt-4 fade-in">
+            <div class="card-body text-center">
+              <div class="camera-controls mb-4">
+                <button id="startCamera" class="btn btn-success" onclick="startCamera()">
+                  <i class="fas fa-video"></i> Bật Camera
+                </button>
+                <button id="stopCamera" class="btn btn-danger ml-2" onclick="stopCamera()" disabled>
+                  <i class="fas fa-video-slash"></i> Tắt Camera
+                </button>
+                <button id="captureImage" class="btn btn-warning ml-2" onclick="captureImage()" disabled>
+                  <i class="fas fa-camera"></i> Chụp & Lưu Lịch Sử
+                </button>
+              </div>
+              <p class="text-muted mb-4"><i class="fas fa-info-circle"></i> Hướng ống kính về phía trái cây để hệ thống tự động nhận diện</p>
+              <div id="cameraContainer" class="position-relative d-inline-block">
+                <img id="cameraFeed" src="" alt="Camera Feed" style="display: none;" />
+              </div>
+              <div id="cameraResult" class="mt-4"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="history" role="tabpanel">
+          <div class="card mt-4 fade-in">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="text-white mb-0"><i class="fas fa-history text-primary"></i> Lịch sử nhận diện</h3>
+                <div class="export-buttons">
+                  <button class="btn btn-danger btn-sm" onclick="clearHistory()">
+                    <i class="fas fa-trash-alt"></i> Xóa tất cả
+                  </button>
+                  <a href="/export_history/excel" class="btn btn-success btn-sm ml-2">
+                    <i class="fas fa-file-excel"></i> Excel
+                  </a>
+                  <a href="/export_history/csv" class="btn btn-info btn-sm ml-2">
+                    <i class="fas fa-file-csv"></i> CSV
+                  </a>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-hover text-white">
+                  <thead class="bg-glass">
+                    <tr>
+                      <th>Thời gian</th>
+                      <th>Hình ảnh</th>
+                      <th>Kết quả</th>
+                      <th>Độ tin cậy</th>
+                      <th>Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody id="historyTableBody">
+                    <!-- Dữ liệu lịch sử sẽ được load ở đây -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="dashboard" role="tabpanel">
+          <div class="card mt-4 fade-in">
+            <div class="card-body">
+              <h3 class="text-white mb-4"><i class="fas fa-tachometer-alt text-primary"></i> Phân tích Dữ liệu</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="stats-card p-4 bg-dark-glass rounded mb-4">
+                    <h5 class="text-white">Phân bổ Trái cây</h5>
+                    <canvas id="fruitPieChart"></canvas>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="stats-card p-4 bg-dark-glass rounded">
+                    <h5 class="text-white">Tổng quan Kiểm định</h5>
+                    <div class="display-4 text-primary font-weight-bold" id="totalInspections">0</div>
+                    <p class="text-muted">Tổng số lượt nhận diện của bạn</p>
+                    <hr class="bg-secondary">
+                    <div id="statsSummary" class="text-white">
+                      <!-- Summary list will go here -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="blockchain" role="tabpanel">
+          <div class="card mt-4 fade-in">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="text-white mb-0"><i class="fas fa-link text-primary"></i> Chuỗi khối Truy xuất nguồn gốc</h3>
+                <div id="blockchainStatus">
+                  <!-- Status badge will appear here -->
+                </div>
+              </div>
+              <p class="text-muted small"><i class="fas fa-shield-alt"></i> Dữ liệu nhận diện được mã hóa và lưu trữ phi tập trung để đảm bảo không thể bị sửa đổi trái phép.</p>
+              
+              <div id="blockchainContent">
+                <!-- Blockchain blocks will be loaded here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p class="mb-0"><span lang="vi" class="fruit-title">NHẬN DẠNG TRÁI CÂY</span></p>
+        <p class="mb-0">Các loại trái cây hỗ trợ: Chuối, Dâu tây, Dứa, Khế, Măng cụt, Xoài</p>
+        <p class="mb-0"><small>&copy; 2026 - Hệ thống nhận dạng trái cây thông minh</small></p>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,163 @@
+[
+    {
+        "index": 0,
+        "transactions": [],
+        "timestamp": 1778498036.924272,
+        "previous_hash": "0",
+        "nonce": 0,
+        "hash": "a61bf3db7799476c2b9f812f8ee0a9925750feddf6f167fbdbb5bab8f673132f"
+    },
+    {
+        "index": 1,
+        "transactions": [
+            {
+                "inspector": "tuanchum",
+                "fruit_type": "Dứa",
+                "confidence": "99.99%",
+                "origin": "Nông trại FruitAI - Việt Nam",
+                "lot_id": "LOT-1778498196",
+                "timestamp": "2026-05-11 18:16:36"
+            }
+        ],
+        "timestamp": 1778498196.842627,
+        "previous_hash": "a61bf3db7799476c2b9f812f8ee0a9925750feddf6f167fbdbb5bab8f673132f",
+        "nonce": 259,
+        "hash": "006de6b87234dd9214a391ea4f71a338300f7478f473eb3edf47286f5bd06c7a"
+    },
+    {
+        "index": 2,
+        "transactions": [
+            {
+                "inspector": "tuanchum",
+                "fruit_type": "Măng cụt",
+                "confidence": "99.99%",
+                "origin": "Nông trại FruitAI - Việt Nam",
+                "lot_id": "LOT-1778498651",
+                "timestamp": "2026-05-11 18:24:11"
+            }
+        ],
+        "timestamp": 1778498651.5693245,
+        "previous_hash": "006de6b87234dd9214a391ea4f71a338300f7478f473eb3edf47286f5bd06c7a",
+        "nonce": 233,
+        "hash": "00a6b8e8f3e71747959ed10781ad31979d1da7c37c153c6b2b40e2b4803e07c6"
+    },
+    {
+        "index": 3,
+        "transactions": [
+            {
+                "inspector": "tuanchum",
+                "fruit_type": "Khế",
+                "confidence": "98.95%",
+                "origin": "Nông trại FruitAI - Việt Nam",
+                "lot_id": "LOT-1778544798",
+                "timestamp": "2026-05-12 07:13:18"
+            }
+        ],
+        "timestamp": 1778544798.0958488,
+        "previous_hash": "00a6b8e8f3e71747959ed10781ad31979d1da7c37c153c6b2b40e2b4803e07c6",
+        "nonce": 121,
+        "hash": "0085016ca3d5b06bb67aa2251976c935da70ba4f92dd94557a991425ca212186"
+    },
+    {
+        "index": 4,
+        "transactions": [
+            {
+                "inspector": "tuanchum",
+                "fruit_type": "Khế",
+                "confidence": "98.95%",
+                "origin": "Nông trại FruitAI - Việt Nam",
+                "lot_id": "LOT-1778544836",
+                "timestamp": "2026-05-12 07:13:56"
+            }
+        ],
+        "timestamp": 1778544836.756417,
+        "previous_hash": "0085016ca3d5b06bb67aa2251976c935da70ba4f92dd94557a991425ca212186",
+        "nonce": 222,
+        "hash": "0039e9af299d885966f3e72dcfb0f62c3a4decb47cfad764febe3fb342a58d45"
+    },
+    {
+        "index": 5,
+        "transactions": [
+            {
+                "inspector": "tuanchum",
+                "fruit_type": "Măng cụt",
+                "confidence": "99.99%",
+                "origin": "Nông trại FruitAI - Việt Nam",
+                "lot_id": "LOT-1778550075",
+                "timestamp": "2026-05-12 08:41:15"
+            }
+        ],
+        "timestamp": 1778550075.3449585,
+        "previous_hash": "0039e9af299d885966f3e72dcfb0f62c3a4decb47cfad764febe3fb342a58d45",
+        "nonce": 160,
+        "hash": "00d3f13d2873188d180c756f8198f70f0c6ddeebdb8ce057a508d77cd69bc10d"
+    },
+    {
+        "index": 6,
+        "transactions": [
+            {
+                "inspector": "tuanchum",
+                "fruit_type": "Măng cụt",
+                "confidence": "99.99%",
+                "origin": "Nông trại FruitAI - Việt Nam",
+                "lot_id": "LOT-1778550117",
+                "timestamp": "2026-05-12 08:41:57"
+            }
+        ],
+        "timestamp": 1778550117.852761,
+        "previous_hash": "00d3f13d2873188d180c756f8198f70f0c6ddeebdb8ce057a508d77cd69bc10d",
+        "nonce": 117,
+        "hash": "00e8fe238aa35aa46568adf2a571bc06e9f62ef67ac291bdff3b7a845f76a002"
+    },
+    {
+        "index": 7,
+        "transactions": [
+            {
+                "inspector": "tuanchum",
+                "fruit_type": "Dâu tây",
+                "confidence": "99.99%",
+                "origin": "Nông trại FruitAI - Việt Nam",
+                "lot_id": "LOT-1778550675",
+                "timestamp": "2026-05-12 08:51:15"
+            }
+        ],
+        "timestamp": 1778550675.2650087,
+        "previous_hash": "00e8fe238aa35aa46568adf2a571bc06e9f62ef67ac291bdff3b7a845f76a002",
+        "nonce": 276,
+        "hash": "006cbb1a058b5b827b0d81707d51c5b89d56a776de7fc71efbe316d37f89dba2"
+    },
+    {
+        "index": 8,
+        "transactions": [
+            {
+                "inspector": "tuanchum",
+                "fruit_type": "Dâu tây",
+                "confidence": "99.99%",
+                "origin": "Nông trại FruitAI - Việt Nam",
+                "lot_id": "LOT-1778550699",
+                "timestamp": "2026-05-12 08:51:39"
+            }
+        ],
+        "timestamp": 1778550699.1205673,
+        "previous_hash": "006cbb1a058b5b827b0d81707d51c5b89d56a776de7fc71efbe316d37f89dba2",
+        "nonce": 122,
+        "hash": "004f428c4841bd9165f7c01b73d21c6ddea8de706517b8bd97351952b064e2e3"
+    },
+    {
+        "index": 9,
+        "transactions": [
+            {
+                "inspector": "tuanchum",
+                "fruit_type": "Dứa",
+                "confidence": "99.98%",
+                "origin": "Nông trại FruitAI - Việt Nam",
+                "lot_id": "LOT-1778550944",
+                "timestamp": "2026-05-12 08:55:44"
+            }
+        ],
+        "timestamp": 1778550944.9225252,
+        "previous_hash": "004f428c4841bd9165f7c01b73d21c6ddea8de706517b8bd97351952b064e2e3",
+        "nonce": 147,
+        "hash": "0044d76550af7ffd7b0def35c6b3537f2ae478e3f968fb4056b16f1275b487a7"
+    }
+]

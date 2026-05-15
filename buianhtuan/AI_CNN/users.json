@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+            "username": "admin",
+            "password": "scrypt:32768:8:1$0VoAWXgMfacNsgqI$73143bc751949157ff699627e071de271702c618363fba6a046f9a0bad06323a7afbe242a0f71a8f8ca21cf231a8786ac55fee5f2643e26fc17af62adf515244",
+            "fullname": "Admin",
+            "email": "admin@example.com"
+        },
+        {
+            "username": "tuanchum",
+            "password": "scrypt:32768:8:1$NuCKRUbmXsbB7qM6$aaacb49bcc53253fd4af95972aef54bd5fb89049e002aeff137aabc68c19fff5b6a45db62c8cb0c2f33a21807e73c2da0abdafefb1445e84ea32f5d5cc5dc20d",
+            "fullname": "Bui Anh Tuan",
+            "email": "gaytongteo2004@gmail.com"
+        }
+    ]
+}
