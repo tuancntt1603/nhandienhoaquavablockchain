@@ -10,14 +10,19 @@
 
 <div align="center">
 
-<img width="180" src="https://github.com/user-attachments/assets/your-image-id"/>
+<!-- Thay logo.png bằng ảnh của bạn trong repo -->
+<img width="180" src="https://github.com/user-attachments/assets/77fe0fd1-2e55-4032-be3c-b1a705a1b574"/>
 
-[![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)]()
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-AI-orange?style=for-the-badge&logo=tensorflow)]()
-[![Blockchain](https://img.shields.io/badge/Blockchain-Ethereum-green?style=for-the-badge)]()
-[![University](https://img.shields.io/badge/DaiNam-University-red?style=for-the-badge)]()
+<br><br>
+
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-AI-orange?style=for-the-badge&logo=tensorflow)
+![Blockchain](https://img.shields.io/badge/Blockchain-Ethereum-green?style=for-the-badge)
+![University](https://img.shields.io/badge/DaiNam-University-orange?style=for-the-badge)
 
 </div>
+
+---
 
 ---
 
