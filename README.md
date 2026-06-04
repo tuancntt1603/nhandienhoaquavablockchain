@@ -5,7 +5,7 @@
 </h2>
 
 <h1 align="center">
-🍎 NHẬN DIỆN HOA QUẢ VÀ ỨNG DỤNG BLOCKCHAIN
+ PHÂN LOẠI HOA QUẢ VÀ QUẢN LÝ BẰNG BLOCKCHAIN
 </h1>
 
 <div align="center">
